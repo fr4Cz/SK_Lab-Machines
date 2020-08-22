@@ -1,0 +1,89 @@
+{
+  "builders": [
+    {
+      "vm_name":"windows-server-2016",
+      "type": "virtualbox-iso",
+      "communicator": "winrm",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "headless": false,
+      "boot_wait": "2m",
+      "winrm_username": "vagrant",
+      "winrm_password": "vagrant",
+      "winrm_timeout": "4h",
+      "shutdown_command": "a:/sysprep.bat",
+      "guest_os_type": "Windows2016_64",
+      "guest_additions_mode": "disable",
+      "disk_size": 61440,
+      "floppy_files": [
+        "{{user `autounattend`}}",
+        "../shared/floppy/WindowsPowershell.lnk",
+        "../shared/floppy/PinTo10.exe",
+        "../shared/scripts/unattend.xml",
+        "../shared/scripts/sysprep.bat",
+        "../shared/scripts/disable-screensaver.ps1",
+        "../shared/scripts/disable-winrm.ps1",
+        "../shared/scripts/enable-winrm.ps1",
+        "../shared/scripts/microsoft-updates.bat",
+        "../shared/scripts/win-updates.ps1",
+        "../shared/scripts/oracle-cert.cer"
+      ],
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "2048"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "2"
+        ]
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "windows-shell",
+      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
+      "scripts": [
+        "../shared/scripts/vm-guest-tools.bat",
+        "../shared/scripts/enable-rdp.bat"
+      ]
+    },
+    {
+      "type": "powershell",
+      "scripts": [
+        "../shared/scripts/debloat-windows.ps1"
+      ]
+    },
+    {
+      "type": "windows-restart"
+    },
+    {
+      "type": "windows-shell",
+      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
+      "scripts": [
+        "../shared/scripts/set-winrm-automatic.bat",
+        "../shared/scripts/compile-dotnet-assemblies.bat",
+        "../shared/scripts/uac-enable.bat",
+        "../shared/scripts/compact.bat"
+      ]
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "keep_input_artifact": false,
+      "output": "builds/windows-server-2016_{{.Provider}}.box",
+      "vagrantfile_template": "vagrantfile-template"
+    }
+  ],
+  "variables": {
+    "iso_url": "https://software-download.microsoft.com/download/pr/Windows_Server_2016_Datacenter_EVAL_en-us_14393_refresh.ISO",
+    "iso_checksum": "md5:70721288BBCDFE3239D8F8C0FAE55F1F",
+    "autounattend": "./answer_file/Autounattend.xml"
+  }
+}

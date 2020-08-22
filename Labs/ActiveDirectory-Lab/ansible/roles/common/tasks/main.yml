@@ -1,0 +1,11 @@
+
+- name: create white template
+  template:
+    src: theme.template
+    dest: /home/vagrant/script.sh
+    mode: 0755
+
+- name: set Kali Linux white theme
+  template:
+    src: desktop.template
+    dest: /etc/xdg/autostart/theme.desktop
