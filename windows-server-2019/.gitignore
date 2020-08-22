@@ -3,6 +3,8 @@
 *.box
 *.ova
 *.ovf
+*.exe
+*.com
 builds/
 iso/
 output*/
