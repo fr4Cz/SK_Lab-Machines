@@ -54,10 +54,10 @@
       "headless": false,
       "http_directory": "http",
       "iso_urls": [
-        "iso/kali-linux-2020.2-installer-amd64.iso",
-        "https://cdimage.kali.org/kali-2020.2/kali-linux-2020.2-installer-amd64.iso"
+        "iso/kali-linux-2020.3-installer-amd64.iso",
+        "https://cdimage.kali.org/kali-2020.3/kali-linux-2020.3-installer-amd64.iso"
       ],
-      "iso_checksum": "sha256:ae9a3b6a1e016cd464ca31ef5055506cecfc55a10f61bf1acb8313eddbe12ad7",
+      "iso_checksum": "sha256:f3b303ad328f6f7de6d26ac5fe41a3c10e2dfeda431a039323fc504acab4acfc",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_port": 22,
