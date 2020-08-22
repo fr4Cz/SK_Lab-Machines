@@ -1,8 +1,5 @@
 {
-  "variables": {
-    "version": "",
-  },
-  "provisioners": [
+   "provisioners": [
     {
       "type": "shell",
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
