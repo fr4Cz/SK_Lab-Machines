@@ -1,10 +1,10 @@
-# Purpose: Creates the "windomain.local" domain
+# Purpose: Creates the "contoso.com" domain
 # Source: https://github.com/StefanScherer/adfs2
 param ([String] $ip)
 
 $subnet = $ip -replace "\.\d+$", ""
 
-$domain= "windomain.local"
+$domain= "contoso.com"
 
 if ((gwmi win32_computersystem).partofdomain -eq $false) {
 
@@ -28,7 +28,7 @@ if ((gwmi win32_computersystem).partofdomain -eq $false) {
   $PlainPassword = "vagrant" # "P@ssw0rd"
   $SecurePassword = $PlainPassword | ConvertTo-SecureString -AsPlainText -Force
 
-  # Windows Server 2016 R2
+  # Windows Server 
   Install-WindowsFeature AD-domain-services
   Import-Module ADDSDeployment
   Install-ADDSForest `
@@ -37,7 +37,7 @@ if ((gwmi win32_computersystem).partofdomain -eq $false) {
     -DatabasePath "C:\Windows\NTDS" `
     -DomainMode "7" `
     -DomainName $domain `
-    -DomainNetbiosName "WINDOMAIN" `
+    -DomainNetbiosName "CONTOSO" `
     -ForestMode "7" `
     -InstallDns:$true `
     -LogPath "C:\Windows\NTDS" `
