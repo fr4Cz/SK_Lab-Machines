@@ -16,7 +16,7 @@ $DomainCred = New-Object System.Management.Automation.PSCredential $user, $pass
 
 # Place the computer in the correct OU based on hostname
 If ($hostname -eq "wef") {
-  Add-Computer -DomainName "contoso.com" -credential $DomainCred -OUPath "ou=Servers,dc=contoso,dc=com -PassThru
+  Add-Computer -DomainName "contoso.com" -credential $DomainCred -OUPath "ou=Servers,dc=contoso,dc=com" -PassThru
 } ElseIf ($hostname -eq "win10") {
   Write-Host "Adding Win10 to the domain. Sometimes this step times out. If that happens, just run 'vagrant reload win10 --provision'" #debug
   Add-Computer -DomainName "contoso.com" -credential $DomainCred -OUPath "ou=Workstations,dc=contoso,dc=com"
