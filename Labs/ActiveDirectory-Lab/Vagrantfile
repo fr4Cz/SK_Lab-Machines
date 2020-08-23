@@ -22,9 +22,9 @@ Vagrant.configure("2") do |config|
     # Provider 
     cfg.vm.provider "virtualbox" do |vb, override|
       vb.gui = true
-      vb.name = "dc.windomain.local"
+      vb.name = "dc.contoso.com"
       vb.default_nic_type = "82545EM"
-      vb.customize ["modifyvm", :id, "--memory", 8072]
+      vb.customize ["modifyvm", :id, "--memory", 4096]
       vb.customize ["modifyvm", :id, "--cpus", 2]
       vb.customize ["modifyvm", :id, "--vram", "128"]
       vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
@@ -55,7 +55,7 @@ Vagrant.configure("2") do |config|
     # Provider 
     cfg.vm.provider "virtualbox" do |vb, override|
       vb.gui = true
-      vb.name = "fileserver.windomain.local"
+      vb.name = "fileserver.contoso.com"
       vb.default_nic_type = "82545EM"
       vb.customize ["modifyvm", :id, "--memory", 4096]
       vb.customize ["modifyvm", :id, "--cpus", 1]
@@ -85,7 +85,7 @@ Vagrant.configure("2") do |config|
  
     cfg.vm.provider "virtualbox" do |vb, override|
       vb.gui = true
-      vb.name = "client1.windomain.local"
+      vb.name = "client1.contoso.com"
       vb.default_nic_type = "82545EM"
       vb.customize ["modifyvm", :id, "--memory", 2048]
       vb.customize ["modifyvm", :id, "--cpus", 2]
@@ -104,7 +104,7 @@ Vagrant.configure("2") do |config|
  
     cfg.vm.provider "virtualbox" do |vb, override|
       vb.gui = true
-      vb.name = "kali.windomain.local"
+      vb.name = "kali.contoso.com"
       vb.customize ["modifyvm", :id, "--memory", 4096]
       vb.customize ["modifyvm", :id, "--cpus", 2]
       vb.customize ["modifyvm", :id, "--vram", "128"]
