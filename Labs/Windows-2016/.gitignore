@@ -1,0 +1,11 @@
+*.vdi
+*.iso
+*.box
+*.ova
+*.ovf
+*.zip
+builds/
+iso/
+output*/
+packer_cache/
+.vagrant/
