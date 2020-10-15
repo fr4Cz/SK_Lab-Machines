@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=KaliWhiteTheme
+Type=Application
+Exec=/home/vagrant/script.sh
+Terminal=false
