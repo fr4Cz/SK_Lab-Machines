@@ -36,6 +36,11 @@ After a several minutes - please be patient, Packer should tell you the box was 
 
 There's an included Vagrantfile that allows quick testing of the built Vagrant boxes. From the same box directory, run the following command after building the box:
 
+  *Add box to the Vagrant local repository by:
+    $ vagrant box add {your choosen name of the image} /builds/vagrant.box
+
+    Comment: Make sure to adjust the choosen name in the Vagrantfile
+
     $ vagrant up
 
 Test that the box works correctly, then tear it down with:
