@@ -15,7 +15,7 @@ Update kernel initramfs:
 Enter the following linux command to regenerate initramfs:
 $ sudo update-initramfs -u
 
-Reboot
+## Reboot
 $ sudo reboot
 
 ## Download Nvidia Drivers and Tollkit
