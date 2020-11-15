@@ -4,6 +4,8 @@
 apt-get update
 apt-get -y install python-pip python3-pip golang htop nload gedit dconf-cli kali-community-wallpapers bloodhound
 pip install impacket
+pip3 install -U --force-reinstall gevent
+
 
 # Add vagrant user to sudoers.
 echo "vagrant        ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers
