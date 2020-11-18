@@ -54,10 +54,10 @@
       "headless": false,
       "http_directory": "http",
       "iso_urls": [
-        "iso/kali-linux-2020.W47-installer-amd64.iso",
-        "http://cdimage.kali.org/kali-weekly/kali-linux-2020-W47-installer-amd64.iso"
+        "iso/kali-linux-2020.4-installer-amd64.iso",
+        "https://cdimage.kali.org/kali-2020.4/kali-linux-2020.4-installer-amd64.iso"
       ],
-      "iso_checksum": "9e956235ba3f4230f13e034ec116f99a72d7af0122c0508f0fc2290e057d932f",
+      "iso_checksum": "50492d761e400c2b5e22c8f253dd6f75c27e4bc84e33c2eff272476a0588fb02",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_port": 22,
