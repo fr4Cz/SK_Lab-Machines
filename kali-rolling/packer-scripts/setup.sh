@@ -3,7 +3,7 @@
 # Add packages
 apt-get update
 apt-get -y install python-pip htop nload gedit dconf-cli bloodhound
-pip install impacket
+#pip install impacket
 
 # Add vagrant user to sudoers.
 echo "vagrant        ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers
