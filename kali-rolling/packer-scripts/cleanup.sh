@@ -6,7 +6,7 @@ apt-add-repository --remove ppa:ansible/ansible
 
 # Apt cleanup.
 apt-get autoremove
-apt-get update
+#apt-get update
 
 # Disable root account over SSH
 sed -i '/PermitRootLogin yes/d' /etc/ssh/sshd_config
