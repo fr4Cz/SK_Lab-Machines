@@ -55,7 +55,7 @@
       "http_directory": "http",
       "iso_urls": [
         "iso/kali-linux-2020-W47-installer-amd64.iso",
-        "https://http://cdimage.kali.org/kali-weekly/kali-linux-2020-W47-installer-amd64.iso"
+        "https://cdimage.kali.org/kali-weekly/kali-linux-2020-W47-installer-amd64.iso"
       ],
       "iso_checksum": "kali-linux-2020-W47-installer-amd64.iso",
       "ssh_username": "vagrant",
