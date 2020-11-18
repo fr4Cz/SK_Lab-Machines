@@ -2,7 +2,7 @@
 
 # Add packages
 apt-get update
-apt-get -y install python-pip python3-pip golang htop nload gedit dconf-cli kali-wallpapers-all bloodhound
+apt-get -y install python-pip python3-pip golang htop nload gedit dconf-cli bloodhound
 pip install impacket
 
 # Add vagrant user to sudoers.
