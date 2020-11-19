@@ -1,38 +1,29 @@
-# Language
+# Norsk Kali Linux
 # d-i debian-installer/locale string nb_NO.UTF-8 UTF-8
+
 d-i debian-installer/locale string en_US.UTF-8 UTF-8
 
-#vKeyboard
 d-i console-keymaps-at/keymap select no
+d-i mirror/country string enter information manually
+d-i mirror/http/hostname string http.kali.org
+d-i mirror/http/directory string /kali
 d-i keyboard-configuration/xkb-keymap select no
+d-i mirror/http/proxy string
+d-i mirror/suite string kali-rolling
+d-i mirror/codename string kali-rolling
 
-# Localisation
 d-i clock-setup/utc boolean true
 d-i time/zone string Europe/Oslo
 
-# System
-d-i netcfg/get_hostname string kali
-d-i netcfg/get_domain string unassigned-domain
-d-i hw-detect/load_firmware boolean false
+# Disable security, volatile and backports
+d-i apt-setup/services-select multiselect 
 
-# User
-d-i passwd/root-password password vagrant
-d-i passwd/root-password-again password vagrant
-d-i passwd/make-user boolean false
-d-i passwd/user-fullname string Vagrant 
-d-i passwd/username string vagrant
-d-i passwd/user-password password vagrant
-d-i passwd/user-password-again password vagrant
-d-i user-setup/allow-password-weak boolean true
+# Enable contrib and non-free
+d-i apt-setup/non-free boolean true
+d-i apt-setup/contrib boolean true
 
-
-# Mirror
-d-i mirror/http/hostname string http.kali.org
-d-i mirror/http/directory string /kali
-d-i mirror/suite string kali-rolling
-d-i mirror/codename string kali-rolling
-#d-i mirror/country string enter information manually
-#d-i mirror/http/proxy string
+# Disable source repositories too
+d-i apt-setup/enable-source-repositories boolean false
 
 # Partitioning
 d-i partman-auto/method string regular
@@ -47,24 +38,8 @@ d-i partman/confirm boolean true
 d-i partman/confirm_nooverwrite boolean true
 d-i partman-partitioning/confirm_write_new_label boolean true
 
-
-# Repositories
-
-# Disable security, volatile and backports
-d-i apt-setup/services-select multiselect 
-
-# Enable contrib and non-free
-d-i apt-setup/non-free boolean true
-d-i apt-setup/contrib boolean true
-
-# Disable source repositories too
-d-i apt-setup/enable-source-repositories boolean false
-
 # Disable CDROM entries after install
 d-i apt-setup/disable-cdrom-entries boolean true
-
-# Kali Linux setup fails if this value is true
-d-i apt-setup/use_mirror boolean true
 
 # Upgrade installed packages
 #d-i pkgsel/upgrade select full-upgrade
@@ -72,14 +47,28 @@ d-i apt-setup/use_mirror boolean true
 # Install a limited subset of tools from the Kali Linux repositories
 d-i pkgsel/include string openssh-server nano
 
-
-# Network
+# Change default hostname
+d-i netcfg/get_hostname string kali
+d-i netcfg/get_domain string unassigned-domain
 #d-i netcfg/choose_interface select auto
 d-i netcfg/choose_interface select eth0
 d-i netcfg/dhcp_timeout string 60
 
+d-i hw-detect/load_firmware boolean false
 
-# Bootloader
+d-i passwd/root-password password vagrant
+d-i passwd/root-password-again password vagrant
+d-i passwd/make-user boolean false
+d-i passwd/user-fullname string Vagrant 
+d-i passwd/username string vagrant
+d-i passwd/user-password password vagrant
+d-i passwd/user-password-again password vagrant
+d-i user-setup/allow-password-weak boolean true
+
+
+# Kali Linux setup fails if this value is true
+d-i apt-setup/use_mirror boolean false
+
 d-i grub-installer/only_debian boolean true
 d-i grub-installer/with_other_os boolean false
 d-i grub-installer/bootdev string /dev/sda
@@ -88,8 +77,6 @@ d-i finish-install/reboot_in_progress note
 # Disable popularity-contest
 popularity-contest popularity-contest/participate boolean false
 
-
-# Package questions
 kismet kismet/install-setuid boolean false
 kismet kismet/install-users string
 
