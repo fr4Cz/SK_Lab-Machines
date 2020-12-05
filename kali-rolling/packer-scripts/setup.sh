@@ -4,6 +4,7 @@
 apt-get update
 apt-get -y install python3-pip htop nload gedit dconf-cli bloodhound
 pip3 install impacket
+gem install evil-winrm 
 
 # Add vagrant user to sudoers.
 echo "vagrant        ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers
