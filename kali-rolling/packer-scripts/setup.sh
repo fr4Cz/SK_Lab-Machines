@@ -10,6 +10,9 @@ gem install evil-winrm
 echo "vagrant        ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers
 sed -i "s/^.*requiretty/#Defaults requiretty/" /etc/sudoers
 
+# Change Shell from bash to zsh.
+sed -i "/vagrant/s/bash/zsh/g" /etc/passwd
+
 # Create static IP for eth0
 cat << EOF > /etc/network/interfaces 
 auto lo eth0
