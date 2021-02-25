@@ -54,10 +54,11 @@
       "headless": false,
       "http_directory": "http",
       "iso_urls": [
-        "iso/kali-linux-2020.4-installer-amd64.iso",
-        "https://cdimage.kali.org/kali-2020.4/kali-linux-2020.4-installer-amd64.iso"
+        "iso/kali-linux-2021.1-installer-amd64.iso",
+        "https://cdimage.kali.org/kali-2021.1/kali-linux-2021.1-installer-amd64.iso"
+
       ],
-      "iso_checksum": "50492d761e400c2b5e22c8f253dd6f75c27e4bc84e33c2eff272476a0588fb02",
+      "iso_checksum": "265812bc13ab11d40c610424871bdf9198b9e7cad99b06540d96fac67dd704de",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -84,7 +85,7 @@
   ],
   "post-processors": [
     {
-      "output": "builds/kali-rolling-{{.Provider}}.box",
+      "output": "builds/kali-rolling-2021.1-{{.Provider}}.box",
       "type": "vagrant"
     }
   ]
