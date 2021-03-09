@@ -3,7 +3,7 @@ Vagrant.configure("2") do |config|
 
   # Define Virtual machine
   config.vm.define "dc" do |cfg|
-    cfg.vm.box = "server-2019"
+    cfg.vm.box = "server-2016"
     cfg.vm.hostname = "dc"
     cfg.vm.boot_timeout = 600
     cfg.winrm.transport = :plaintext
@@ -35,7 +35,7 @@ Vagrant.configure("2") do |config|
 
     # Define Virtual machine
   config.vm.define "fileserver" do |cfg|
-    cfg.vm.box = "server-2019"
+    cfg.vm.box = "server-2016"
     cfg.vm.hostname = "fileserver"
     cfg.vm.boot_timeout = 600
     cfg.winrm.transport = :plaintext
