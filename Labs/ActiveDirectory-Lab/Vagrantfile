@@ -112,9 +112,9 @@ Vagrant.configure("2") do |config|
       vb.customize ["setextradata", "global", "GUI/SuppressMessages", "all" ]
     end
 
-    cfg.vm.provision "ansible_local" do |ansible|
-      ansible.playbook = "ansible/playbook.yml"
-      ansible.install_mode = "pip"
-    end
+    #cfg.vm.provision "ansible_local" do |ansible|
+    #  ansible.playbook = "ansible/playbook.yml"
+    #  ansible.install_mode = "pip"
+    #end
   end
 end
