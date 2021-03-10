@@ -1,0 +1,99 @@
+Vagrant.configure("2") do |config|
+
+
+  # Define Virtual machine
+  config.vm.define "dc" do |cfg|
+    cfg.vm.box = "server-2016"
+    cfg.vm.hostname = "dc"
+    cfg.vm.boot_timeout = 600
+    cfg.winrm.transport = :plaintext
+    cfg.vm.communicator = "winrm"
+    cfg.winrm.basic_auth_only = true
+    cfg.winrm.timeout = 300
+    cfg.winrm.retry_limit = 20
+    cfg.vm.network :private_network, ip: "192.168.38.102", gateway: "192.168.38.1"
+
+    # Provision Virtual Machine
+    cfg.vm.provision "shell", path: "./scripts/fix-second-network.ps1", privileged: false, args: "192.168.38.102"
+    cfg.vm.provision "shell", path: "./scripts/provision.ps1", privileged: false
+    cfg.vm.provision "reload"
+    cfg.vm.provision "shell", path: "./scripts/provision.ps1", privileged: false
+
+    # Provider 
+    cfg.vm.provider "virtualbox" do |vb, override|
+      vb.gui = true
+      vb.name = "dc.contoso.com"
+      vb.default_nic_type = "82545EM"
+      vb.customize ["modifyvm", :id, "--memory", 4096]
+      vb.customize ["modifyvm", :id, "--cpus", 2]
+      vb.customize ["modifyvm", :id, "--vram", "128"]
+      vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
+      #vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      vb.customize ["setextradata", "global", "GUI/SuppressMessages", "all" ]
+    end
+  end
+
+    # Define Virtual machine
+  config.vm.define "exchange" do |cfg|
+    cfg.vm.box = "server-2016"
+    cfg.vm.hostname = "exchange"
+    cfg.vm.boot_timeout = 600
+    cfg.winrm.transport = :plaintext
+    cfg.vm.communicator = "winrm"
+    cfg.winrm.basic_auth_only = true
+    cfg.winrm.timeout = 300
+    cfg.winrm.retry_limit = 20
+    cfg.vm.network :private_network, ip: "192.168.38.103", gateway: "192.168.38.1"
+
+    # Provision Virtual Machine
+    cfg.vm.provision "shell", path: "./scripts/fix-second-network.ps1", privileged: false, args: "192.168.38.102"
+    cfg.vm.provision "shell", inline: "Start-Sleep -s 120"
+    cfg.vm.provision "shell", path: "./scripts/provision.ps1", privileged: false
+    cfg.vm.provision "reload"
+    cfg.vm.provision "shell", path: "./scripts/provision.ps1", privileged: false
+
+    # Provider 
+    cfg.vm.provider "virtualbox" do |vb, override|
+      vb.gui = true
+      vb.name = "exchange.contoso.com"
+      vb.default_nic_type = "82545EM"
+      vb.customize ["modifyvm", :id, "--memory", 16096]
+      vb.customize ["modifyvm", :id, "--cpus", 2]
+      vb.customize ["modifyvm", :id, "--vram", "128"]
+      vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
+      #vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      vb.customize ["setextradata", "global", "GUI/SuppressMessages", "all" ]
+    end
+  end
+
+  # Define Virtual machine
+  config.vm.define "client1" do |cfg|
+    cfg.vm.box = "windows10-2004"
+    cfg.vm.hostname = "client1"
+    cfg.vm.boot_timeout = 1200
+    cfg.vm.communicator = "winrm"
+    cfg.winrm.basic_auth_only = true
+    cfg.winrm.timeout = 1200
+    cfg.winrm.retry_limit = 20
+    cfg.vm.network :private_network, ip: "192.168.38.104", gateway: "192.168.38.1", dns: "192.168.38.102"
+
+    # Provision Virtual machine
+    cfg.vm.provision "shell", path: "./scripts/fix-second-network.ps1", privileged: false, args: "-ip 192.168.38.104 -dns 192.168.38.102"
+    cfg.vm.provision "shell", path: "./scripts/provision.ps1", privileged: false
+    cfg.vm.provision "reload"
+    cfg.vm.provision "shell", path: "./scripts/provision.ps1", privileged: false
+ 
+    cfg.vm.provider "virtualbox" do |vb, override|
+      vb.gui = true
+      vb.name = "client1.contoso.com"
+      vb.default_nic_type = "82545EM"
+      vb.customize ["modifyvm", :id, "--memory", 2048]
+      vb.customize ["modifyvm", :id, "--cpus", 2]
+      vb.customize ["modifyvm", :id, "--vram", "128"]
+      vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
+      #vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      vb.customize ["setextradata", "global", "GUI/SuppressMessages", "all" ]
+    end
+  end
+
+end
