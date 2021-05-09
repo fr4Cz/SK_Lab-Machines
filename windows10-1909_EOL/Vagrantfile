@@ -1,0 +1,30 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  # Define Virtual machine
+  config.vm.define "client2" do |cfg|
+    cfg.vm.box = "Windows10-1909"
+    cfg.vm.hostname = "CLIENT2-WINDOWS-10"
+    cfg.vm.boot_timeout = 1200
+    cfg.vm.communicator = "winrm"
+    cfg.winrm.basic_auth_only = true
+    cfg.winrm.timeout = 1200
+    cfg.winrm.retry_limit = 20
+    cfg.vm.network :private_network, ip: "192.168.38.102"
+
+    # Define provider config
+    cfg.vm.provider "virtualbox" do |vb, override|
+      vb.gui = true
+      vb.name = "CLIENT2-WINDOWS-10.local"
+      vb.default_nic_type = "82545EM"
+      vb.customize ["modifyvm", :id, "--memory", 2048]
+      vb.customize ["modifyvm", :id, "--cpus", 2]
+      vb.customize ["modifyvm", :id, "--vram", "32"]
+      vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
+      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      vb.customize ["setextradata", "global", "GUI/SuppressMessages", "all" ]
+    end
+  end
+end
