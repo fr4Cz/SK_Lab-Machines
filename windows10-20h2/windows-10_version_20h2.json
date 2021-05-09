@@ -2,7 +2,7 @@
   "builders": [
     {
       "type": "virtualbox-iso",
-      "vm_name":"windows_10_2004",
+      "vm_name":"windows_10_20h2",
       "communicator": "winrm",
       "iso_url": "{{user `iso_url`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
@@ -70,8 +70,7 @@
       "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
       "scripts": [
         "../shared/scripts/set-winrm-automatic.bat",
-        "../shared/scripts/disable-windowsupdate.bat",
-		    "../shared/scripts/chocopacks.bat"
+        "../shared/scripts/disable-windowsupdate.bat"
       ]
     }
   ],
@@ -79,7 +78,7 @@
     {
       "type": "vagrant",
       "keep_input_artifact": false,
-      "output": "builds/windows_10_2004_{{.Provider}}.box",
+      "output": "builds/windows_10_20h2_{{.Provider}}.box",
       "vagrantfile_template": "vagrantfile-template"
     }
   ],
