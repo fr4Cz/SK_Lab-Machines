@@ -1,0 +1,93 @@
+{
+  "builders": [
+    {
+      "type": "virtualbox-iso",
+      "vm_name":"windows_10_20h2_update",
+      "communicator": "winrm",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "headless": false,
+      "boot_wait": "6m",
+      "boot_command": "",
+      "winrm_username": "vagrant",
+      "winrm_password": "vagrant",
+      "winrm_timeout": "4h",
+      "shutdown_timeout": "2h",
+      "shutdown_command": "a:/sysprep.bat",
+      "guest_os_type": "Windows10_64",
+      "guest_additions_mode": "disable",
+      "disk_size": "{{user `disk_size`}}",
+      "floppy_files": [
+        "{{user `autounattend`}}",
+        "../shared/scripts/fixnetwork.ps1",
+        "../shared/scripts/rearm-windows.ps1",
+        "../shared/scripts/disable-winrm.ps1",
+        "../shared/scripts/enable-winrm.ps1",
+        "../shared/scripts/microsoft-updates.bat",
+        "../shared/scripts/win-updates.ps1",
+		    "../shared/scripts/chocolatey.bat",
+		    "../shared/scripts/chocopacks.bat",
+        "./answer_file/unattend.xml",
+        "../shared/scripts/sysprep.bat"
+      ],
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "2048"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "2"
+        ]
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "windows-shell",
+      "remote_path": "/tmp/script.bat",
+      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
+      "scripts": [
+	      "../shared/scripts/vm-guest-tools.bat",
+        "../shared/scripts/enable-rdp.bat",
+        "../shared/scripts/chocolatey.bat"
+      ]
+    },
+    {
+      "type": "powershell",
+      "scripts": [
+        "../shared/scripts/debloat-windows10.ps1"
+      ]
+    },
+    {
+      "type": "windows-restart"
+    },
+    {
+      "type": "windows-shell",
+      "remote_path": "/tmp/script.bat",
+      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
+      "scripts": [
+        "../shared/scripts/set-winrm-automatic.bat",
+        "../shared/scripts/disable-windowsupdate.bat"
+      ]
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "keep_input_artifact": false,
+      "output": "builds/windows_10_20h2_update_{{.Provider}}.box",
+      "vagrantfile_template": "vagrantfile-template"
+    }
+  ],
+  "variables": {
+    "iso_checksum": "sha256:574f00380ead9e4b53921c33bf348b5a2fa976ffad1d5fa20466ddf7f0258964",
+    "iso_url": "https://software-download.microsoft.com/download/pr/19042.508.200927-1902.20h2_release_svc_refresh_CLIENTENTERPRISEEVAL_OEMRET_x64FRE_en-us.iso",
+    "autounattend": "./answer_file/update/Autounattend.xml",
+    "disk_size": "61440"
+  }
+}
