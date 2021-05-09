@@ -1,6 +1,6 @@
 # Lab-Machines builds
 
-Update 11.04.2021
+Update 09.05.2021
 
 This repository contains Windows and Linux templates that can be used to create boxes for
 Vagrant using Packer ([Website](https://www.packer.io))
@@ -17,10 +17,10 @@ The following software must be installed/present on your local machine before yo
   - [VirtualBox](https://www.virtualbox.org/)
 
   The boxes are testet on a Linux host running:
-  - Ubuntu 18.04 LTS
-  - Virtualbox 6.1.12
-  - Vagrant 2.2.9 with Virtualbox Extention 6.1.12 and plugin vagrant-reload
-  - Packer 1.6
+  - Ubuntu 18.04.5 LTS and Ubuntu 20.04.2 LTS
+  - Virtualbox 6.1.22
+  - Vagrant 2.2.16 with Virtualbox Extention 6.1.22 and plugin vagrant-reload (0.0.1, global)
+  - Packer 1.7.2
 
 ## Usage
 
