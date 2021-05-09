@@ -1,6 +1,6 @@
 # Lab-Machines builds
 
-Update 09.05.2021
+Update 09.05.2021 - New Windows 10 20H2 Image
 
 This repository contains Windows and Linux templates that can be used to create boxes for
 Vagrant using Packer ([Website](https://www.packer.io))
