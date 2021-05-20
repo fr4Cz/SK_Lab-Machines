@@ -2,7 +2,7 @@
 
 Update 20.05.2021
 - New Windows 10 20H2 Image
-- Windows 10 1909 End Of Life 11. of May 2021
+- Windows 10 1909 End Of (Life 11. of May 2021)
 
 This repository contains Windows and Linux templates that can be used to create boxes for
 Vagrant using Packer ([Website](https://www.packer.io))
