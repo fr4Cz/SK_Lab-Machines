@@ -7,7 +7,7 @@
       "iso_url": "{{user `iso_url`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
       "headless": false,
-      "boot_wait": "2m",
+      "boot_wait": "3m",
       "winrm_username": "vagrant",
       "winrm_password": "vagrant",
       "winrm_timeout": "4h",
@@ -17,6 +17,7 @@
       "disk_size": 61440,
       "gfx_controller": "vboxsvga",
       "gfx_vram_size": "128",
+      "gfx_accelerate_3d": "true",
       "floppy_files": [
         "{{user `autounattend`}}",
         "./answer_file/unattend.xml",
