@@ -1,6 +1,6 @@
 # Lab-Machines builds
 
-Update 21.05.2021
+Update 20.05.2021
 - New Windows 10 20H2 Image
 - Windows 10 1909 End Of (Life 11. of May 2021).
 
