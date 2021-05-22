@@ -16,6 +16,8 @@
       "shutdown_command": "a:/sysprep.bat",
       "guest_os_type": "Windows10_64",
       "guest_additions_mode": "disable",
+      "gfx_controller": "vboxsvga",
+      "gfx_vram_size": "32",
       "disk_size": "{{user `disk_size`}}",
       "floppy_files": [
         "{{user `autounattend`}}",
