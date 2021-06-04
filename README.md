@@ -25,10 +25,14 @@ The following software must be installed/present on your local machine before yo
   - Vagrant 2.2.16 with Virtualbox Extention 6.1.22 and plugin vagrant-reload (0.0.1, global)
   - Packer 1.7.2
 
-* Trouble with unstable Windows Virtual machines? Host machine running Ubuntu 20.04 and a Intel Gen 10 or Gen 11 processor?
-Try use kernel parameter split_lock_detect=off
+## Trouble with unstable Windows Virtual machines? Host machine running Ubuntu 20.04 and a Intel Gen 10 or Gen 11 processor?
 
-Example: BOOT_IMAGE=/vmlinuz-5.8.0-53-generic root=/dev/mapper/vgubuntu-root ro quiet splash split_lock_detect=off vt.handoff=7
+Try use kernel parameter:
+
+ split_lock_detect=off
+
+    Example: BOOT_IMAGE=/vmlinuz-5.8.0-53-generic root=/dev/mapper/vgubuntu-root ro quiet splash split_lock_detect=off vt.handoff=7
+
 
 ## Usage
 
