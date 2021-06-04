@@ -31,8 +31,9 @@ Host machine running Ubuntu 20.04 and a Intel Gen 10 or Gen 11 processor?
 
 Try use kernel parameter:
 
- split_lock_detect=off
+    split_lock_detect=off
 
+    
 
 ## Usage
 
