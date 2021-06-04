@@ -1,0 +1,91 @@
+{
+  "builders": [
+    {
+      "type": "virtualbox-iso",
+      "vm_name":"windows_10_21h1",
+      "communicator": "winrm",
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "headless": false,
+      "boot_wait": "6m",
+      "boot_command": "",
+      "winrm_username": "vagrant",
+      "winrm_password": "vagrant",
+      "winrm_timeout": "4h",
+      "shutdown_timeout": "2h",
+      "shutdown_command": "a:/sysprep.bat",
+      "guest_os_type": "Windows10_64",
+      "guest_additions_mode": "disable",
+      "disk_size": "{{user `disk_size`}}",
+      "floppy_files": [
+        "{{user `autounattend`}}",
+        "../shared/scripts/fixnetwork.ps1",
+        "../shared/scripts/rearm-windows.ps1",
+        "../shared/scripts/disable-winrm.ps1",
+        "../shared/scripts/enable-winrm.ps1",
+		    "../shared/scripts/chocolatey.bat",
+		    "../shared/scripts/chocopacks.bat",
+        "./answer_file/unattend.xml",
+        "../shared/scripts/sysprep.bat"
+      ],
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "2048"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "2"
+        ]
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "windows-shell",
+      "remote_path": "/tmp/script.bat",
+      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
+      "scripts": [
+	      "../shared/scripts/vm-guest-tools.bat",
+        "../shared/scripts/enable-rdp.bat",
+        "../shared/scripts/chocolatey.bat"
+      ]
+    },
+    {
+      "type": "powershell",
+      "scripts": [
+        "../shared/scripts/debloat-windows10.ps1"
+      ]
+    },
+    {
+      "type": "windows-restart"
+    },
+    {
+      "type": "windows-shell",
+      "remote_path": "/tmp/script.bat",
+      "execute_command": "{{ .Vars }} cmd /c \"{{ .Path }}\"",
+      "scripts": [
+        "../shared/scripts/set-winrm-automatic.bat",
+        "../shared/scripts/disable-windowsupdate.bat"
+      ]
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "keep_input_artifact": false,
+      "output": "builds/windows_10_21h1_{{.Provider}}.box",
+      "vagrantfile_template": "vagrantfile-template"
+    }
+  ],
+  "variables": {
+    "iso_checksum": "sha256:026607e7aa7ff80441045d8830556bf8899062ca9b3c543702f112dd6ffe6078",
+    "iso_url": "https://software-download.microsoft.com/download/sg/19043.928.210409-1212.21h1_release_svc_refresh_CLIENTENTERPRISEEVAL_OEMRET_x64FRE_en-us.iso",
+    "autounattend": "./answer_file/Autounattend.xml",
+    "disk_size": "61440"
+  }
+}
