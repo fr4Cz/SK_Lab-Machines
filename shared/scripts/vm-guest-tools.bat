@@ -1,9 +1,10 @@
 if not exist "C:\Windows\Temp\7z1900-x64.msi" (
     powershell -Command "(New-Object System.Net.WebClient).DownloadFile('https://www.7-zip.org/a/7z1900-x64.msi', 'C:\Windows\Temp\7z1900-x64.msi')" <NUL
 )
-if not exist "C:\Windows\Temp\7z1900-x64.msi" (
-    powershell -Command "Start-Sleep 5 ; (New-Object System.Net.WebClient).DownloadFile('https://www.7-zip.org/a/7z1900-x64.msi', 'C:\Windows\Temp\7z1900-x64.msi')" <NUL
-)
+REM if not exist "C:\Windows\Temp\7z1900-x64.msi" (
+REM    powershell -Command "Start-Sleep 5 ; (New-Object System.Net.WebClient).DownloadFile('https://www.7-zip.org/a/7z1900-x64.msi', 'C:\Windows\Temp\7z1900-x64.msi')" <NUL
+REM )
+
 msiexec /qb /i C:\Windows\Temp\7z1900-x64.msi
 
 if "%PACKER_BUILDER_TYPE%" equ "vmware-iso" goto :vmware

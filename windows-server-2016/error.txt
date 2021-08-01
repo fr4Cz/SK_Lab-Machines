@@ -1,0 +1,64 @@
+==> virtualbox-iso: Connected to WinRM!
+==> virtualbox-iso: Uploading VirtualBox version info (6.1.26)
+==> virtualbox-iso: Provisioning with windows-shell...
+==> virtualbox-iso: Provisioning with shell script: ../shared/scripts/vm-guest-tools.bat
+    virtualbox-iso:
+    virtualbox-iso: C:\Users\vagrant>if not exist "C:\Windows\Temp\7z1900-x64.msi" (powershell -Command "(New-Object System.Net.WebClient).DownloadFile('https://www.7-zip.org/a/7z1900-x64.msi', 'C:\Windows\Temp\7z1900-x64.msi')"  0<NUL )
+    virtualbox-iso:
+    virtualbox-iso: C:\Users\vagrant>if not exist "C:\Windows\Temp\7z1900-x64.msi" (powershell -Command "Start-Sleep 5 ; (New-Object System.Net.WebClient).DownloadFile('https://www.7-zip.org/a/7z1900-x64.msi', 'C:\Windows\Temp\7z1900-x64.msi')"  0<NUL )
+==> virtualbox-iso: Exception calling "DownloadFile" with "2" argument(s): "The request was aborted: Could not create SSL/TLS secure
+==> virtualbox-iso: channel."
+==> virtualbox-iso: At line:1 char:1
+==> virtualbox-iso: + (New-Object System.Net.WebClient).DownloadFile('https://www.7-zip.org ...
+==> virtualbox-iso: + ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+==> virtualbox-iso:     + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+==> virtualbox-iso:     + FullyQualifiedErrorId : WebException
+==> virtualbox-iso:
+    virtualbox-iso:
+    virtualbox-iso: C:\Users\vagrant>msiexec /qb /i C:\Windows\Temp\7z1900-x64.msi
+    virtualbox-iso: This installation package could not be opened.  Verify that the package exists and that you can access it, or contact the application vendor to verify that this is a valid Windows Installer package.
+==> virtualbox-iso: Exception calling "DownloadFile" with "2" argument(s): "The request was aborted: Could not create SSL/TLS secure
+    virtualbox-iso: 
+==> virtualbox-iso: channel."
+==> virtualbox-iso: At line:1 char:17
+    virtualbox-iso: C:\Users\vagrant>if "virtualbox-iso" EQU "vmware-iso" goto :vmware
+    virtualbox-iso:
+    virtualbox-iso: C:\Users\vagrant>if "virtualbox-iso" EQU "virtualbox-iso" goto :virtualbox
+==> virtualbox-iso: + ... t-Sleep 5 ; (New-Object System.Net.WebClient).DownloadFile('https://w ...
+==> virtualbox-iso: +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    virtualbox-iso:
+==> virtualbox-iso:     + CategoryInfo          : NotSpecified: (:) [], MethodInvocationException
+==> virtualbox-iso:     + FullyQualifiedErrorId : WebException
+    virtualbox-iso: C:\Users\vagrant>if exist "C:\Users\vagrant\VBoxGuestAdditions.iso" (move /Y C:\Users\vagrant\VBoxGuestAdditions.iso C:\Windows\Temp )
+    virtualbox-iso:
+    virtualbox-iso: C:\Users\vagrant>if not exist "C:\Windows\Temp\VBoxGuestAdditions.iso" (powershell -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; (New-Object System.Net.WebClient).DownloadFile('https://download.virtualbox.org/virtualbox/6.1.26/VBoxGuestAdditions_6.1.26.iso', 'C:\Windows\Temp\VBoxGuestAdditions.iso')"  0<NUL )
+==> virtualbox-iso:
+    virtualbox-iso:
+    virtualbox-iso: C:\Users\vagrant>cmd /c ""C:\Program Files\7-Zip\7z.exe" x C:\Windows\Temp\VBoxGuestAdditions.iso -oC:\Windows\Temp\virtualbox"
+    virtualbox-iso:
+==> virtualbox-iso: The system cannot find the path specified.
+==> virtualbox-iso: The system cannot find the path specified.
+    virtualbox-iso: C:\Users\vagrant>cmd /c for %i in (C:\Windows\Temp\virtualbox\cert\vbox*.cer) do C:\Windows\Temp\virtualbox\cert\VBoxCertUtil add-trusted-publisher %i --root %i
+==> virtualbox-iso: The system cannot find the file specified.
+    virtualbox-iso:
+    virtualbox-iso: C:\Users\vagrant>cmd /c C:\Windows\Temp\virtualbox\VBoxWindowsAdditions.exe /S
+    virtualbox-iso:
+    virtualbox-iso: C:\Users\vagrant>rd /S /Q "C:\Windows\Temp\virtualbox"
+    virtualbox-iso:
+    virtualbox-iso: C:\Users\vagrant>goto :done
+    virtualbox-iso:
+    virtualbox-iso: C:\Users\vagrant>msiexec /qb /x C:\Windows\Temp\7z1900-x64.msi
+    virtualbox-iso: This installation package could not be opened.  Verify that the package exists and that you can access it, or contact the application vendor to verify that this is a valid Windows Installer package.
+    virtualbox-iso: 
+==> virtualbox-iso: Provisioning step had errors: Running the cleanup provisioner, if present...
+==> virtualbox-iso: Cleaning up floppy disk...
+==> virtualbox-iso: Deregistering and deleting VM...
+==> virtualbox-iso: Deleting output directory...
+Build 'virtualbox-iso' errored after 1 hour 1 minute: Script exited with non-zero exit status: 1619.Allowed exit codes are: [0]
+
+==> Wait completed after 1 hour 1 minute
+
+==> Some builds didn't complete successfully and had errors:
+--> virtualbox-iso: Script exited with non-zero exit status: 1619.Allowed exit codes are: [0]
+
+==> Builds finished but no artifacts were created.
