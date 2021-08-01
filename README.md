@@ -1,6 +1,6 @@
 # Lab-Machines builds
 
-Update 04.06.2021
+Update 01.08.2021
 - New Windows 10 21H2 Image
 - New Kali Linux 2021.2 Image
 - Windows 10 1909 End Of (Life 11. of May 2021).
@@ -21,9 +21,9 @@ The following software must be installed/present on your local machine before yo
 
   The boxes are testet on a Linux host running:
   - Ubuntu 18.04.5 LTS and Ubuntu 20.04.2 LTS
-  - Virtualbox 6.1.22
-  - Vagrant 2.2.16 with Virtualbox Extention 6.1.22 and plugin vagrant-reload (0.0.1, global)
-  - Packer 1.7.2
+  - Virtualbox 6.1.26
+  - Vagrant 2.2.26 with Virtualbox Extention 6.1.26 and plugin vagrant-reload (0.0.1, global)
+  - Packer 1.7.4
 
 ## Trouble with unstable Windows Virtual machines? 
 
