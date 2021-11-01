@@ -21,9 +21,12 @@ The following software must be installed/present on your local machine before yo
 
   The boxes are testet on a Linux host running:
   - Ubuntu 18.04.5 LTS and Ubuntu 20.04.3 LTS
-  - Virtualbox 6.1.26
+  - Virtualbox 6.1.28
   - Vagrant 2.2.18 with Virtualbox Extention 6.1.26 and plugin vagrant-reload (0.0.1, global)
-  - Packer 1.7.5
+  - Packer 1.7.7
+
+  *install vagrant plugin:
+  $ vagrant plugin install vagrant-reload
 
 ## Trouble with unstable Windows Virtual machines? 
 
