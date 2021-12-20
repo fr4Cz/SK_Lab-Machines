@@ -11,10 +11,9 @@ Vagrant.configure("2") do |config|
     cfg.winrm.basic_auth_only = true
     cfg.winrm.timeout = 300
     cfg.winrm.retry_limit = 20
-    cfg.vm.network :private_network, ip: "192.168.38.102", gateway: "192.168.38.1"
+    cfg.vm.network :private_network, ip: "192.168.56.102", gateway: "192.168.56.1"
 
     # Provision Virtual Machine
-    cfg.vm.provision "shell", path: "./scripts/fix-second-network.ps1", privileged: false, args: "192.168.38.102"
     cfg.vm.provision "shell", path: "./scripts/provision.ps1", privileged: false
     cfg.vm.provision "reload"
     cfg.vm.provision "shell", path: "./scripts/provision.ps1", privileged: false
@@ -33,7 +32,7 @@ Vagrant.configure("2") do |config|
     end
   end
 
-    # Define Virtual machine
+  # Define Virtual machine
   config.vm.define "fileserver" do |cfg|
     cfg.vm.box = "server-2016"
     cfg.vm.hostname = "fileserver"
@@ -43,10 +42,9 @@ Vagrant.configure("2") do |config|
     cfg.winrm.basic_auth_only = true
     cfg.winrm.timeout = 300
     cfg.winrm.retry_limit = 20
-    cfg.vm.network :private_network, ip: "192.168.38.103", gateway: "192.168.38.1"
+    cfg.vm.network :private_network, ip: "192.168.56.103", gateway: "192.168.56.1"
 
     # Provision Virtual Machine
-    cfg.vm.provision "shell", path: "./scripts/fix-second-network.ps1", privileged: false, args: "192.168.38.102"
     cfg.vm.provision "shell", inline: "Start-Sleep -s 120"
     cfg.vm.provision "shell", path: "./scripts/provision.ps1", privileged: false
     cfg.vm.provision "reload"
@@ -75,10 +73,9 @@ Vagrant.configure("2") do |config|
     cfg.winrm.basic_auth_only = true
     cfg.winrm.timeout = 1200
     cfg.winrm.retry_limit = 20
-    cfg.vm.network :private_network, ip: "192.168.38.104", gateway: "192.168.38.1", dns: "192.168.38.102"
+    cfg.vm.network :private_network, ip: "192.168.56.104", gateway: "192.168.56.1", dns: "192.168.56.102"
 
     # Provision Virtual machine
-    cfg.vm.provision "shell", path: "./scripts/fix-second-network.ps1", privileged: false, args: "-ip 192.168.38.104 -dns 192.168.38.102"
     cfg.vm.provision "shell", path: "./scripts/provision.ps1", privileged: false
     cfg.vm.provision "reload"
     cfg.vm.provision "shell", path: "./scripts/provision.ps1", privileged: false
@@ -100,7 +97,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "kali-vm" do |cfg|
     cfg.vm.box = "kalirolling"
     cfg.vm.hostname = "kali-vm"
-    cfg.vm.network :private_network, ip: "192.168.38.128"
+    cfg.vm.network :private_network, ip: "192.168.56.128"
  
     cfg.vm.provider "virtualbox" do |vb, override|
       vb.gui = true
