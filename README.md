@@ -1,8 +1,8 @@
 # Lab-Machines builds
 
-Update 16.09.2021
+Update 20.12.2021
 - New Windows 10 21H2 Image
-- New Kali Linux 2021.3 Image
+- New Kali Linux 2021.4 Image
 - Windows 10 1909 End Of (Life 11. of May 2021).
 
 This repository contains Windows and Linux templates that can be used to create boxes for
@@ -21,9 +21,9 @@ The following software must be installed/present on your local machine before yo
 
   The boxes are testet on a Linux host running:
   - Ubuntu 18.04.5 LTS and Ubuntu 20.04.3 LTS
-  - Virtualbox 6.1.28
-  - Vagrant 2.2.18 with Virtualbox Extention 6.1.26 and plugin vagrant-reload (0.0.1, global)
-  - Packer 1.7.7
+  - Virtualbox 6.1.30
+  - Vagrant 2.2.19 with Virtualbox Extention 6.1.30 and plugin vagrant-reload (0.0.1, global)
+  - Packer 1.7.8
 
   *install vagrant plugin:
   $ vagrant plugin install vagrant-reload
