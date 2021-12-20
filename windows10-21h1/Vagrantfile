@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
     cfg.winrm.basic_auth_only = true
     cfg.winrm.timeout = 1200
     cfg.winrm.retry_limit = 20
-    cfg.vm.network :private_network, ip: "192.168.38.101"
+    cfg.vm.network :private_network, ip: "192.168.56.101"
 
     # Define provider config
     cfg.vm.provider "virtualbox" do |vb, override|
@@ -23,7 +23,7 @@ Vagrant.configure("2") do |config|
       vb.customize ["modifyvm", :id, "--cpus", 2]
       vb.customize ["modifyvm", :id, "--vram", "32"]
       vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
-      vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      #vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       vb.customize ["setextradata", "global", "GUI/SuppressMessages", "all" ]
     end
   end
