@@ -67,4 +67,14 @@ Test that the box works correctly, then tear it down with:
     $ vagrant destroy -f
 
 
+## Labs
+
+Ex. Labs\ActiveDirectory-Lab
+
+If Private_Network is other than 192.168.56.0/24, remember to change static ip address to the ActiveDirectory DNS-server in the following files:
+
+/scripts/join-domain.ps1 
+/scripts/provision.ps1
+
+
 
