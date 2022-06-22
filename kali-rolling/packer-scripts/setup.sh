@@ -2,7 +2,7 @@
 
 # Add packages
 apt-get update
-apt-get -y install kali-linux-default python3-pip htop nload gedit dconf-cli bloodhound powershell gss-ntlmssp
+apt-get -y install kali-linux-default python3-pip htop nload gedit dconf-cli bloodhound powershell gss-ntlmssp gobuster
 pip3 install impacket
 gem install evil-winrm 
 
