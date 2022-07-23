@@ -1,6 +1,7 @@
 # Lab-Machines builds
 
-Update 22.06.2022
+Update 23.07.2022
+- New Ubuntu 22.04 LTS Image
 - New Windows 10 21H2 Image
 - New Kali Linux 2022.2 Image
 - Windows 10 1909 End Of (Life 11. of May 2021).
