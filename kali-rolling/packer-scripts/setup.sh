@@ -2,9 +2,9 @@
 
 # Add packages
 apt-get update
-apt-get -y install kali-linux-default python3-pip htop nload gedit dconf-cli bloodhound powershell gss-ntlmssp gobuster golang remmina
+apt-get -y install kali-linux-default python3-pip htop nload gedit dconf-cli bloodhound powershell evil-winrm gss-ntlmssp gobuster golang remmina kali-wallpapers-all lapsdumper
 pip3 install impacket
-gem install evil-winrm 
+# gem install evil-winrm - removed due to package in apt-get install 
 
 # Add vagrant user to sudoers.
 echo "vagrant        ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers
