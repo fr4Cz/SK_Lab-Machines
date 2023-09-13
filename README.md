@@ -26,6 +26,12 @@ The following software must be installed/present on your local machine before yo
   - Vagrant 2.2.19 with Virtualbox Extention 6.1.34 and plugin vagrant-reload (0.0.1, global)
   - Packer 1.8.2
 
+For alpha testing on Ubuntu 22.04 LTS:
+Install Virtualbox and extension pack using this guide: [Here](https://computingforgeeks.com/install-virtualbox-on-ubuntu-linux/?utm_content=cmp-true) 
+Then install vagrant and packer through the default APT repository.
+
+    sudo apt install vagrant packer
+
   *install vagrant plugin:
   $ vagrant plugin install vagrant-reload
 
